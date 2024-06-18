@@ -1,0 +1,43 @@
+<div class="banner-holder" (mousemove)="MoveContent($event)">
+  <div class="select-type">
+    <div class="select-btn">
+      <button class="btn-type" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">New
+        <br>Projects</button>
+    </div>
+    <div class="select-btn">
+      <button class="btn-type">Buy<br> Properties</button>
+    </div>
+    <div class="select-btn">
+      <button class="btn-type">Rent <br>Properties</button>
+    </div>
+    <div class="select-btn">
+      <button class="btn-type">PG/<br>Hostels</button>
+    </div>
+    <div class="select-btn">
+      <button class="btn-type">Plot & <br>Lands</button>
+    </div>
+    <div class="select-btn">
+      <button class="btn-type">Commercial <br>Properties</button>
+    </div>
+    <div class="select-btn">
+      <button style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;" class="btn-type">Find<br>
+        Agents</button>
+    </div>
+  </div>
+  <form #searchForm="ngForm" class="input-search">
+    <input (keydown.enter)="onEnter(searchForm.value)" type="text" placeholder="Search.." name="search" ngModel>
+    <mat-form-field class="budget-select">
+      <mat-label>Budget</mat-label>
+      <mat-select [(ngModel)]="selectedBudget" name="budget">
+        <mat-option *ngFor="let budget of budgets" [value]="budget.value">
+          {{budget.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="btn-search" mat-stroked-button>
+      Search
+    </button>
+  </form>
+  <img src=".../../../../../assets/head-image.jpg" class="banner-img">
+  <h3 id="bannerHeading" class="banner-heading">Get Your Dream House</h3>
+</div>

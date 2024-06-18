@@ -1,0 +1,29 @@
+.nav-class {
+  background-color: rgb(58, 73, 90);
+  justify-content: space-between;
+  color: white;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.btn-login {
+  padding: 7px 15px;
+  background-color: rgb(104, 103, 103);
+  color: white;
+  /* border: 1px solid white; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-add-property {
+  padding: 7px 15px;
+  background-color: rgb(104, 103, 103);
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.example-full-width {
+  width: 100%;
+}
