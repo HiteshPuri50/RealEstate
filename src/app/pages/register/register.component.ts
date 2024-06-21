@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthApiService } from 'src/app/services/auth-api.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   signupForm!: FormGroup; //Definate Assignment (ayega hi ayega)
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private auth: AuthApiService) {
     this.signupForm = this.fb.group(
       {
         username: [''],
@@ -20,11 +21,9 @@ export class RegisterComponent {
       })
   }
   onSubmit() {
-    this.http.post('http://localhost:3000/api/users/signup', this.signupForm.value).subscribe(res => {
-      console.log(res);
-      this.router.navigate(['/login'])
-    }, err => {
-      console.log(err);
-    });
+    this.auth.registerAPI(this.signupForm.value).subscribe(res=>{
+      this.router.navigate(['/login']);
+      return res
+  })
   }
 }

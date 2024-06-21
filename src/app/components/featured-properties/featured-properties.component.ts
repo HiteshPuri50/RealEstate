@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthApiService } from 'src/app/services/auth-api.service';
 
 @Component({
   selector: 'app-featured-properties',
@@ -26,17 +27,19 @@ export class FeaturedPropertiesComponent {
   get displayedProperties(): any[] {
     return this.featuredProperties.slice(this.startIndex, this.startIndex + this.itemsPerPage);
   }
-  constructor(private http: HttpClient) {
-    let payload = {
-      featured: true
-    }
-    this.http.post('http://localhost:3000/api/featuredProperties', payload).subscribe(res => {
-      this.featuredProperties = res
-    }, err => {
-      console.log(err);
-    });
+  constructor(private http: HttpClient, private auth: AuthApiService) {
+    this.getProperties();
   }
   interestedButton() {
     alert("Why are you Interested");
+  }
+  getProperties(){
+    let payload = {
+      featured: true
+    }
+    this.auth.featuredPropertiesAPI(payload).subscribe(res => {
+      this.featuredProperties = res
+      return res;
+    });
   }
 }

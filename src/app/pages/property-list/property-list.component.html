@@ -1,1 +1,39 @@
-<p>property-list works!</p>
+<app-header></app-header>
+<div class="proeprties-section">
+    <div style="display: flex; flex-direction: column; width: 70%;">
+        <div class="property-card" *ngFor="let property of allProperties">
+            <div class="all-property">
+                <div class="property-image">
+                    <img [src]="'data:image/jpg;base64,' + property.images[0]" alt="Image of property">
+                </div>
+                <div class="property-content">
+                    <div class="shortlist-share">
+                        <button><mat-icon>favorite_border</mat-icon></button>
+                        <button><mat-icon>share</mat-icon></button>
+                    </div>
+                    <h4>{{property.address.street}}</h4>
+                    <h5>{{property.title}}</h5>
+                    <b>{{property.price | currencypipe}}</b>
+                    <div class="property-size-status">
+                        <p class="property-size"><b>{{property.squareFeet | squarefeet}}</b></p>
+                        <p class="property-status"><b>{{property.possesionStatus}}</b></p>
+                    </div>
+                    <p>{{reduceLength(property.description)}}</p>
+                </div>
+            </div>
+            <div class="contact-btn">
+                <div class="icon">
+                    <mat-icon class="profile">account_circle</mat-icon>
+                    <mat-icon>verified_user</mat-icon>
+                </div>
+                <div class="btn">
+                    <button class="whatsapp-btn">Whatsapp</button>
+                    <button class="agent-btn">Contact Agent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="selected-properties">
+         
+    </div>
+</div>

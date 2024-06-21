@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthApiService } from 'src/app/services/auth-api.service';
 
 @Component({
   selector: 'app-add-property',
@@ -8,16 +10,9 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./add-property.component.css']
 })
 export class AddPropertyComponent {
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
-  // propertyDetailsFormGroup = this._formBuilder.group({
-  //   title: ['', Validators.required],
-  //   description: ['', Validators.required],
-  //   propertyType: ['', Validators.required],
-  //   squareFeet: ['', Validators.required],
-  //   bedroom: ['', Validators.required],
-  //   bathroom: ['', Validators.required],
-  //   price: ['', Validators.required],
-  // });
+  constructor(private fb: FormBuilder, private http: HttpClient, private auth : AuthApiService,
+    private router : Router
+  ) { }
   propertyAddressFormGroup = this.fb.group({
     street: ['', Validators.required],
     city: ['', Validators.required],
@@ -69,10 +64,10 @@ export class AddPropertyComponent {
   Property() {
     const obj = this.propertyDetail.value
     obj.address = this.propertyAddressFormGroup.value;
-    console.log(obj);
-    // this.propertyDetail.get('address')?.patchValue(this.propertyAddressFormGroup.value);
-    this.http.post('http://localhost:3000/api/property', obj).subscribe(res => {
+
+    this.auth.addPropertyAPI(obj).subscribe(res => {
       console.log(res);
+      this.router.navigate(['/home']);
     }, err => {
       console.log(err);
     })

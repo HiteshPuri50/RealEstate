@@ -33,6 +33,7 @@ import { AddPropertyComponent } from './admin/add-property/add-property.componen
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencypipePipe } from './pipes/currencypipe.pipe';
+import { SquarefeetPipe } from './pipes/squarefeet.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CurrencypipePipe } from './pipes/currencypipe.pipe';
     ContactUsComponent,
     FaqComponent,
     AddPropertyComponent,
-    CurrencypipePipe
+    CurrencypipePipe,
+    SquarefeetPipe
   ],
   imports: [
     BrowserModule,
