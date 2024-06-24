@@ -23,8 +23,11 @@
             </div>
             <div class="contact-btn">
                 <div class="icon">
-                    <mat-icon class="profile">account_circle</mat-icon>
-                    <mat-icon>verified_user</mat-icon>
+                    <mat-icon *ngIf="!property.owner else hasOwner" class="profile">account_circle</mat-icon>
+                    <ng-template #hasOwner>
+                        <p class="username-initial" style="background-color: rgb(6, 88, 0);">{{ getFirstLetter(property.owner) }}</p>
+                    </ng-template>
+                    <!-- <mat-icon *ngIf="!userData.verified">verified_user</mat-icon> -->
                 </div>
                 <div class="btn">
                     <button class="whatsapp-btn">Whatsapp</button>

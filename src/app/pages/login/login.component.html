@@ -9,7 +9,7 @@
             <input type="password" formControlName="password" placeholder="Confirm password" required>
         </div>
         <div class="input-box button">
-            <input type="Submit" value="Login Now" style="color: white;">
+            <input type="Submit" (click)="onSubmit()" value="Login Now" style="color: white;">
         </div>
         <div class="text">
             <h3>Don't have account!<br> Lets create it now <br><a routerLink="/register">Register Here</a></h3>

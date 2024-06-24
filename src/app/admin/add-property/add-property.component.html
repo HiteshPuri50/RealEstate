@@ -1,7 +1,7 @@
+<app-header></app-header>
 <form action="" [formGroup]="propertyDetail">
   <mat-stepper [linear]="false" #stepper>
     <mat-step>
-      <!-- <form [formGroup]="propertyDetailsFormGroup"> -->
       <ng-template matStepLabel>Fill out Property Details</ng-template>
       <div class="property-field">
         <mat-form-field class="property-mat-field">
@@ -14,7 +14,11 @@
         </mat-form-field>
         <mat-form-field class="property-mat-field">
           <mat-label>Property Type</mat-label>
-          <input matInput placeholder="Enter Property type" formControlName="propertyType" required>
+          <mat-select formControlName="propertyType">
+            <mat-option *ngFor="let property of propertyTypes" [value]="property.value">
+              {{ property.viewValue }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field class="property-mat-field">
           <mat-label>SquareFeet</mat-label>
@@ -36,7 +40,6 @@
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
-      <!-- </form> -->
     </mat-step>
     <mat-step label="Fill out your address">
       <div class="property-field">
@@ -70,16 +73,24 @@
       </div>
     </mat-step>
     <mat-step label="Upload Images">
-      <!-- <form [formGroup]="propertyAddressFormGroup"> -->
-      <div class="upload-images" (click)="fileInput.click()">
-        <mat-icon>file_copy</mat-icon>
+      <div style="display: flex; width: 350px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+        <mat-form-field class="listed-by">
+          <mat-label>Listed By</mat-label>
+          <mat-select formControlName="listedBy">
+            <mat-option *ngFor="let list of allList" [value]="list.value">
+              {{ list.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="upload-images" (click)="fileInput.click()">
+          <mat-icon>file_copy</mat-icon>
+        </div>
       </div>
       <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" multiple>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext (click)="Property()">Done</button>
       </div>
-      <!-- </form> -->
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>

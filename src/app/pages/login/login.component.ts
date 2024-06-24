@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthApiService } from 'src/app/services/auth-api.service';
+import { CommondataService } from 'src/app/services/commondata.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { AuthApiService } from 'src/app/services/auth-api.service';
 export class LoginComponent {
   loginForm!: FormGroup; //Definate Assignment (ayega hi ayega)
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,private auth : AuthApiService,
-    private cookie: CookieService
+    private cookie: CookieService, private cmnData : CommondataService
   ) {
     let username = this.cookie.get("username")
     if(username){
@@ -33,6 +34,7 @@ export class LoginComponent {
       this.cookie.set("email", this.response.email);
       this.cookie.set("username", this.response.user);
       this.cookie.set("mobile", this.response.mobile);
+      this.cmnData.userData = res;
       this.router.navigate(['/home']);
       return res;
     });

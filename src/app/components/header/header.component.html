@@ -8,7 +8,7 @@
       <span class="example-spacer"></span>
     </div>
 
-    <div style="width: 250px; padding: 10px; display: flex; justify-content: space-between;">
+    <div style="width: 250px; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
       <button class="btn-add-property" routerLink="/add-property" aria-label="Example icon-button with heart icon">
         Sell or Rent Property
       </button>
@@ -16,8 +16,12 @@
         Login
       </button>
       <ng-template #userExist>
-        {{username}}
+        <p (click)="showModal()" class="username-initial" style="background-color: rgb(6, 88, 0);">{{ getFirstLetter() }}</p>
       </ng-template>
+      <div *ngIf="showDropdown" class="dropdown-menu">
+        <button (click)="viewProfile()">Profile</button>
+        <button (click)="logout()">Logout</button>
+      </div>
     </div>
   </mat-toolbar>
 </nav>

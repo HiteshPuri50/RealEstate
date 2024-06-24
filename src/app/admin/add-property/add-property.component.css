@@ -11,7 +11,7 @@
 .upload-images {
   width: 100px;
   height: 100px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,4 +21,8 @@
   /* width: 90px;
   height: 90px; */
   zoom: 3;
+}
+.listed-by{
+  width: 180px;
+  height: 75px;
 }

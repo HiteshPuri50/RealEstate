@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthApiService } from 'src/app/services/auth-api.service';
+import { CommondataService } from 'src/app/services/commondata.service';
 
 @Component({
   selector: 'app-property-list',
@@ -7,10 +8,12 @@ import { AuthApiService } from 'src/app/services/auth-api.service';
   styleUrls: ['./property-list.component.css']
 })
 export class PropertyListComponent {
-  constructor(private auth: AuthApiService){}
+  constructor(private auth: AuthApiService, private commonData : CommondataService){}
   allProperties: any;
-
+  userData!: Object;
   ngOnInit(){
+    this.userData = this.commonData.userData;
+    console.log(this.userData);
     this.getAllProperties();
   }
 
@@ -28,5 +31,8 @@ export class PropertyListComponent {
 
   // Return the first 50 characters followed by an ellipsis
   return text.slice(0, 100) + '...';
+  }
+  getFirstLetter(username : string): string {
+    return username ? username.charAt(0).toUpperCase() : '';
   }
 }
