@@ -15,6 +15,10 @@ interface propertyType {
   viewValue: string;
 }
 
+interface Poccessions {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -30,6 +34,7 @@ export class AddPropertyComponent {
   }
   propertyType : string = '';
   listedBy : string = '';
+  possesionStatus : string = '';
   allList: ListedBy[] = [
     { value: 'Owner', viewValue: 'Owner' },
     { value: 'Agent', viewValue: 'Agent' },
@@ -49,6 +54,13 @@ export class AddPropertyComponent {
     { value: 'PG', viewValue: 'PG' },
   ]
 
+  poccessions: Poccessions[] = [
+    { value: 'Owned', viewValue: 'Owned' },
+    { value: 'Leased/Rented', viewValue: 'Leased/Rented' },
+    { value: 'Vacant', viewValue: 'Vacant' },
+    { value: 'Under Construction', viewValue: 'Under Construction' },
+    { value: 'Pending Sale', viewValue: 'Pending Sale' },
+  ]
   propertyAddressFormGroup = this.fb.group({
     street: ['', Validators.required],
     city: ['', Validators.required],

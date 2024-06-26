@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthApiService } from 'src/app/services/auth-api.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -6,5 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./property-detail.component.css']
 })
 export class PropertyDetailComponent {
+  id: any;
 
+  constructor(private route: ActivatedRoute, private auth : AuthApiService) {}
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    let data = {
+      _id : this.id
+    }
+    this.auth.getProperty(data).subscribe(res=>{
+      console.log(res);
+    }, err=>{
+      console.log(err);
+    })
+  }
 }

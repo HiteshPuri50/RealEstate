@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthApiService } from 'src/app/services/auth-api.service';
 import { CommondataService } from 'src/app/services/commondata.service';
 
@@ -8,7 +9,7 @@ import { CommondataService } from 'src/app/services/commondata.service';
   styleUrls: ['./property-list.component.css']
 })
 export class PropertyListComponent {
-  constructor(private auth: AuthApiService, private commonData : CommondataService){}
+  constructor(private auth: AuthApiService, private commonData : CommondataService, private router : Router){}
   allProperties: any;
   userData!: Object;
   ngOnInit(){
@@ -34,5 +35,9 @@ export class PropertyListComponent {
   }
   getFirstLetter(username : string): string {
     return username ? username.charAt(0).toUpperCase() : '';
+  }
+  getProperty(id: any){
+    alert(id);
+    this.router.navigate(['/property-detail', id])
   }
 }

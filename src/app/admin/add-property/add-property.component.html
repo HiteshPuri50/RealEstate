@@ -36,6 +36,14 @@
           <mat-label>Price</mat-label>
           <input matInput placeholder="Enter Price" formControlName="price" required>
         </mat-form-field>
+        <mat-form-field>
+          <mat-label>Poccession Status</mat-label>
+          <mat-select formControlName="possesionStatus">
+            <mat-option *ngFor="let possesion of poccessions" [value]="possesion.value">
+              {{ possesion.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
         <button mat-button matStepperNext>Next</button>

@@ -18,7 +18,7 @@ export class AuthApiService {
   }
   
   loginAPI(data: any) {
-    return this.http.post(`${this.baseUrl}/users/login`, data);
+    return this.http.post(`${this.baseUrl}/Account/login`, data);
   }
   registerAPI(data : any){
     return this.http.post(`${this.baseUrl}/Account/CreateAccount`, data);
@@ -31,5 +31,8 @@ export class AuthApiService {
   }
   getAllProperties(){
     return this.http.get(`${this.baseUrl}/getAllProperties`);
+  }
+  getProperty(id : any){
+    return this.http.get('http://localhost:3000/api/getProperties', id);
   }
 }
