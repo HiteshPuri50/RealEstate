@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { backend } from '../backend/backend';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class AuthApiService {
   getAllProperties(){
     return this.http.get(`${this.baseUrl}/getAllProperties`);
   }
-  getProperty(id : any){
-    return this.http.get('http://localhost:3000/api/getProperties', id);
+  getProperty(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getProperties`, { params: { id } });
   }
 }

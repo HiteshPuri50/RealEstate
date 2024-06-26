@@ -14,13 +14,15 @@ export class PropertyDetailComponent {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    let data = {
-      _id : this.id
+    if (this.id) {
+      this.auth.getProperty(this.id).subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
-    this.auth.getProperty(data).subscribe(res=>{
-      console.log(res);
-    }, err=>{
-      console.log(err);
-    })
   }
 }
