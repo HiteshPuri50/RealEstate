@@ -2,6 +2,7 @@
   background-color: rgb(58, 73, 90);
   justify-content: space-between;
   color: white;
+  width: 100vw;
 }
 .example-form {
   min-width: 150px;
@@ -82,4 +83,9 @@
 
 .dropdown-menu button:hover {
   background-color: #f1f1f1;
+}
+.profile-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

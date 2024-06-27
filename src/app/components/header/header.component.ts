@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthApiService } from 'src/app/services/auth-api.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,20 @@ import { CookieService } from 'ngx-cookie-service';
 export class HeaderComponent {
   username : string = '';
   showDropdown: boolean = false;
-  constructor(private cookie: CookieService, private router : Router){ 
-    if(this.cookie.check('username')){
+  email!: string;
+  userData:any;
+  constructor(private cookie: CookieService, private router : Router, private auth: AuthApiService){ 
+    if(this.cookie.check('email')){
       this.username = this.cookie.get('username');
-    } 
+      this.email = this.cookie.get('email');
+      console.log(this.email);
+    this.auth.getProfile(this.email).subscribe(res=>{
+      this.userData = res[0];
+      console.log(this.userData);
+    }, err=>{ 
+      console.log(err);
+    });
+  } 
   }
   
   getFirstLetter(): string {
@@ -23,7 +34,9 @@ export class HeaderComponent {
     this.showDropdown = !this.showDropdown;
   }
   viewProfile(){
-    alert('In Pending');
+    if(this.cookie.check('email')){
+      this.router.navigate(['profile']);
+    }
   }
   logout() {
     this.cookie.deleteAll();

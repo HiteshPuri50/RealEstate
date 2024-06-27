@@ -37,7 +37,6 @@ export class PropertyListComponent {
     return username ? username.charAt(0).toUpperCase() : '';
   }
   getProperty(id: any){
-    alert(id);
     this.router.navigate(['/property-detail', id])
   }
 }

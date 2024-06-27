@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthApiService {
 
   baseUrl : string = '';
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     if(backend.role == 0){
       this.baseUrl = 'https://localhost:7184/api';
     }else if(backend.role == 1){
@@ -18,7 +18,7 @@ export class AuthApiService {
     }
   }
   
-  loginAPI(data: any) {
+  loginAPI(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/Account/login`, data);
   }
   registerAPI(data : any){
@@ -35,5 +35,14 @@ export class AuthApiService {
   }
   getProperty(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/getProperties`, { params: { id } });
+  }
+  getProfile(email : string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/Account/profile`, { params: { email } });
+  }
+  updateProfileImage(data: any){
+    return this.http.post(`${this.baseUrl}/Account/updateImage`, data );
+  }
+  updateProfile(data:any){
+    return this.http.post(`${this.baseUrl}/Account/updateData`, data);
   }
 }

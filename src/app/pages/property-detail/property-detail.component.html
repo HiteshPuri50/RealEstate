@@ -1,1 +1,14 @@
-<p>property-detail works!</p>
+<app-header></app-header>
+<div class="container">
+    <div class="property-content">
+        <div class="property-img">
+            <img class="property-image" [src]="'data:image/jpg;base64,' + propertyDetail.images[0]" alt="" srcset="">
+        </div>
+        <div class="property-details">
+            <h1>{{propertyDetail.title}}</h1>
+            <h2>{{propertyDetail.price | currencypipe}}</h2>
+            <p>{{propertyDetail.description}}</p>
+            
+        </div>
+    </div>
+</div>

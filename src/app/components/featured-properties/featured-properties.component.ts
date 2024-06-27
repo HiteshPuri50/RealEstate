@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthApiService } from 'src/app/services/auth-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-featured-properties',
@@ -27,7 +28,7 @@ export class FeaturedPropertiesComponent {
   get displayedProperties(): any[] {
     return this.featuredProperties.slice(this.startIndex, this.startIndex + this.itemsPerPage);
   }
-  constructor(private http: HttpClient, private auth: AuthApiService) {
+  constructor(private http: HttpClient, private auth: AuthApiService, private router: Router) {
     this.getProperties();
   }
   interestedButton() {
@@ -41,5 +42,8 @@ export class FeaturedPropertiesComponent {
       this.featuredProperties = res
       return res;
     });
+  }
+  getProperty(id: any){
+    this.router.navigate(['property-detail', id]);
   }
 }

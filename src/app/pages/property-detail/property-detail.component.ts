@@ -9,7 +9,7 @@ import { AuthApiService } from 'src/app/services/auth-api.service';
 })
 export class PropertyDetailComponent {
   id: any;
-
+  propertyDetail : any;
   constructor(private route: ActivatedRoute, private auth : AuthApiService) {}
 
   ngOnInit(): void {
@@ -17,7 +17,9 @@ export class PropertyDetailComponent {
     if (this.id) {
       this.auth.getProperty(this.id).subscribe(
         res => {
-          console.log(res);
+          console.log(res[0]);
+          this.propertyDetail = res[0];
+          console.log(this.propertyDetail.images[0]);
         },
         err => {
           console.log(err);

@@ -79,7 +79,8 @@ export class AddPropertyComponent {
     address: this.fb.group({}),
     images: this.fb.array([]),       //Adding images in array
     listedBy: ['', Validators.required],
-    owner: this.cookie.get('username')
+    owner: this.cookie.get('username'),
+    possesionStatus: ['', Validators.required]
   })
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;

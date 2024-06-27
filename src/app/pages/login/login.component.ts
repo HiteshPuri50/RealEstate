@@ -30,9 +30,9 @@ export class LoginComponent {
   onSubmit() {
     this.auth.loginAPI(this.loginForm.value).subscribe(res => {
       console.log(res);
-      this.response = res;
+      this.response = res.result;
       this.cookie.set("email", this.response.email);
-      this.cookie.set("username", this.response.user);
+      this.cookie.set("username", this.response.username);
       this.cookie.set("mobile", this.response.mobile);
       this.cmnData.userData = res;
       this.router.navigate(['/home']);

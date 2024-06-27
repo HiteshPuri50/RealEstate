@@ -16,7 +16,10 @@
         Login
       </button>
       <ng-template #userExist>
-        <p (click)="showModal()" class="username-initial" style="background-color: rgb(6, 88, 0);">{{ getFirstLetter() }}</p>
+        <span (click)="showModal()" class="username-initial" style="background-color: rgb(6, 88, 0);">
+          <p *ngIf="!userData.profileImage">{{ getFirstLetter() }}</p>
+          <img class="profile-img" *ngIf="userData.profileImage" [src]="'data:image/png;base64,' + userData.profileImage" alt="" srcset="">
+        </span>
       </ng-template>
       <div *ngIf="showDropdown" class="dropdown-menu">
         <button (click)="viewProfile()">Profile</button>

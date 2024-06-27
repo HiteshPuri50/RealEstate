@@ -34,7 +34,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencypipePipe } from './pipes/currencypipe.pipe';
 import { SquarefeetPipe } from './pipes/squarefeet.pipe';
-
+import { ShortNamePipe } from './pipes/short-name.pipe';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { UpdateDataDialogComponent } from './pages/update-data-dialog/update-data-dialog.component';
+import { DatedifferencePipe } from './pipes/datedifference.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +60,10 @@ import { SquarefeetPipe } from './pipes/squarefeet.pipe';
     FaqComponent,
     AddPropertyComponent,
     CurrencypipePipe,
-    SquarefeetPipe
+    SquarefeetPipe,
+    ShortNamePipe,
+    UpdateDataDialogComponent,
+    DatedifferencePipe
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,8 @@ import { SquarefeetPipe } from './pipes/squarefeet.pipe';
     HttpClientModule,
     MatCardModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,7 +14,7 @@
       </mat-card>
       <div class="card-content">
         <div class="title">
-          <h4>{{property.title}}</h4>
+          <h4 class="featured-title" (click)="getProperty(property._id)">{{property.title}}</h4>
         </div>
         <div class="price">
           <b>{{property.price | currencypipe}}</b>
