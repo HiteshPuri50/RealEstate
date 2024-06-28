@@ -1,0 +1,28 @@
+.accordion {
+    width: 100%;
+  }
+  
+  .accordion-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .accordion-header {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out, padding 0.2s ease-out;
+    padding: 0 10px;
+  }
+  
+  .accordion-body.show {
+    max-height: 200px; /* Adjust based on your content */
+    padding: 10px;
+  }
+  

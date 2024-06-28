@@ -1,10 +1,11 @@
 .profile-container {
     width: 80vw;
     padding: 20px;
-    /* font-family: Arial, sans-serif; */
     margin: 70px auto;
-    /* border: 1px solid grey; */
-
+  }
+  .uploaded-property{
+    width: 80vw;
+    margin:  auto;
   }
   .profile-data{
     display: flex;

@@ -24,25 +24,25 @@ export class AuthApiService {
   registerAPI(data : any){
     return this.http.post(`${this.baseUrl}/Account/CreateAccount`, data);
   }
-  featuredPropertiesAPI(data : any){
-    return this.http.post<any[]>(`${this.baseUrl}/featuredProperties`,data)
-  }
-  addPropertyAPI(data: any){
-    return this.http.post<any[]>(`${this.baseUrl}/property`, data);
-  }
-  getAllProperties(){
-    return this.http.get(`${this.baseUrl}/getAllProperties`);
-  }
-  getProperty(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getProperties`, { params: { id } });
-  }
-  getProfile(email : string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Account/profile`, { params: { email } });
+  getProfile(email : any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/Account/profile`, { params: { email} });
   }
   updateProfileImage(data: any){
     return this.http.post(`${this.baseUrl}/Account/updateImage`, data );
   }
   updateProfile(data:any){
     return this.http.post(`${this.baseUrl}/Account/updateData`, data);
+  }
+  featuredPropertiesAPI(data : any){
+    return this.http.post<any[]>(`${this.baseUrl}/RealEstate/featuredProperties`,data)
+  }
+  addPropertyAPI(data: any){
+    return this.http.post<any[]>(`${this.baseUrl}/RealEstate/property`, data);
+  }
+  getAllProperties(){
+    return this.http.get(`${this.baseUrl}/RealEstate/getAllProperties`);
+  }
+  getProperty(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/RealEstate/getProperties`, { params: { id } });
   }
 }

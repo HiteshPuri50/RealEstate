@@ -38,6 +38,7 @@ import { ShortNamePipe } from './pipes/short-name.pipe';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { UpdateDataDialogComponent } from './pages/update-data-dialog/update-data-dialog.component';
 import { DatedifferencePipe } from './pipes/datedifference.pipe';
+import { UserPropertiesComponent } from './pages/user-properties/user-properties.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { DatedifferencePipe } from './pipes/datedifference.pipe';
     SquarefeetPipe,
     ShortNamePipe,
     UpdateDataDialogComponent,
-    DatedifferencePipe
+    DatedifferencePipe,
+    UserPropertiesComponent
   ],
   imports: [
     BrowserModule,

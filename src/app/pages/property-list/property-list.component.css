@@ -4,6 +4,7 @@
     background-color: azure;
     overflow: hidden; /* Prevent margin collapse */
     display: flex;
+    margin-top: 70px;
 }
 
 .all-property {

@@ -1,0 +1,11 @@
+<div *ngIf="properties && properties.length > 0">
+    <div *ngFor="let property of properties">
+      <h3>{{ property.title }}</h3>
+      <p>{{ property.description }}</p>
+      <!-- Add other property details here -->
+    </div>
+  </div>
+  <div *ngIf="properties.length === 0">
+    <p>No properties found.</p>
+  </div>
+  

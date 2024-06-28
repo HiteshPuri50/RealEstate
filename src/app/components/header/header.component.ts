@@ -17,10 +17,9 @@ export class HeaderComponent {
     if(this.cookie.check('email')){
       this.username = this.cookie.get('username');
       this.email = this.cookie.get('email');
-      console.log(this.email);
     this.auth.getProfile(this.email).subscribe(res=>{
-      this.userData = res[0];
-      console.log(this.userData);
+      console.log(res);
+      this.userData = res.userProfile[0];
     }, err=>{ 
       console.log(err);
     });

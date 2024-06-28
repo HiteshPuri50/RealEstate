@@ -1,36 +1,42 @@
 <app-header></app-header>
-<div style="background: #58bf921f;">
-<div class="profile-container" *ngIf="userData">
-    <div class="profile-data">
-      <div class="profile-header">
-        <div (click)="uploadFile.click()" class="profile-pic">
-          <span class="initials" *ngIf="!userData.profileImage else haveImage">{{userData.username | shortName}}</span>
-          <ng-template #haveImage>
-            <img class="profile-img" [src]="'data:image/png;base64,' + userData.profileImage" alt="" srcset="">
-          </ng-template>
-          <input class="hideInput" #uploadFile (change)="onFileSelected($event)" type="file">
+<div class="all-contnent">
+  <div style="background: #58bf921f;">
+    <div class="profile-container" *ngIf="userData">
+        <div class="profile-data">
+          <div class="profile-header">
+            <div (click)="uploadFile.click()" class="profile-pic">
+              <span class="initials" *ngIf="!userData.profileImage else haveImage">{{userData.username | shortName}}</span>
+              <ng-template #haveImage>
+                <img class="profile-img" [src]="'data:image/png;base64,' + userData.profileImage" alt="" srcset="">
+              </ng-template>
+              <input class="hideInput" #uploadFile (change)="onFileSelected($event)" type="file">
+            </div>
+            <div class="welcome-text">
+              <h1 class="welcome-message">Welcome back, {{userData.username}}</h1>
+              Since {{userData.createdAt | datedifference}}
+            </div>
+          </div>
+          <div class="profile-details">
+            <div class="details-column">
+              <p><strong>Username:</strong> {{userData.username}}</p>
+              <p><strong>Phone Number:</strong> {{userData.mobile}}</p>
+              <p><strong>Email Id:</strong> {{userData.email}}</p>
+              <p><strong>Gender:</strong> {{userData.gender}}</p>
+              <p><strong>Age:</strong> {{userData.age === 0 ? '' : userData.age}}</p>
+            </div>
+            <button class="update-btn" (click)="updateData()">Update Personal Detail</button>
+          </div>
         </div>
-        <div class="welcome-text">
-          <h1 class="welcome-message">Welcome back, {{userData.username}}</h1>
-          Since {{userData.createdAt | datedifference}}
+        <div class="verifed" *ngIf="!userData.verified else verifiedUser">
+          <h3 class="danger-heading">You are not Verified! Get Verified by filling your details <a (click)="openDialog()" class="verified-btn">Click Here to get Verified</a></h3>
         </div>
-      </div>
-      <div class="profile-details">
-        <div class="details-column">
-          <p><strong>Username:</strong> {{userData.username}}</p>
-          <p><strong>Phone Number:</strong> {{userData.mobile}}</p>
-          <p><strong>Email Id:</strong> {{userData.email}}</p>
-          <p><strong>Gender:</strong> {{userData.gender}}</p>
-          <p><strong>Age:</strong> {{userData.age === 0 ? '' : userData.age}}</p>
-        </div>
-        <button class="update-btn" (click)="updateData()">Update Personal Detail</button>
+        <ng-template #verifiedUser>
+          <h3 class="success-heading">&#9989; Congratulations you are a verified User</h3>
+        </ng-template>
       </div>
     </div>
-    <div class="verifed" *ngIf="!userData.verified else verifiedUser">
-      <h3 class="danger-heading">You are not Verified! Get Verified by filling your details <a (click)="openDialog()" class="verified-btn">Click Here to get Verified</a></h3>
+    <div class="uploaded-property"  *ngIf="userProperties && userData">
+      <h4>Advertisement Uploaded by {{userData.username}}</h4>
+      <app-user-properties [properties]="userProperties"></app-user-properties>
     </div>
-    <ng-template #verifiedUser>
-      <h3 class="success-heading">&#9989; Congratulations you are a verified User</h3>
-    </ng-template>
-  </div>
 </div>

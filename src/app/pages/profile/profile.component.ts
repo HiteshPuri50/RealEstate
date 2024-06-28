@@ -16,18 +16,23 @@ export class ProfileComponent {
   email: string = '';
   userData : any;
   userImage !: any;
+  username!: string;
+  userProperties: any;
   constructor(private cookie: CookieService, private router : Router, private auth : AuthApiService,
     private dialog : MatDialog
   ){  }
   ngOnInit(){
     if(this.cookie.check('email')){
       this.email = this.cookie.get('email');
-    this.auth.getProfile(this.email).subscribe(res=>{
-      this.userData = res[0];
-    }, err=>{ 
-      console.log(err);
-    });
-  } 
+      this.username = this.cookie.get('username');
+      this.auth.getProfile(this.email).subscribe(res=>{
+        this.userData = res.userProfile[0];
+        this.userProperties = res.Properties;
+        console.log(this.userProperties);
+      }, err=>{ 
+        console.log(err);
+      });
+    } 
   }
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -78,7 +83,6 @@ export class ProfileComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       this.userData = result;
       this.ngOnInit();
     });
