@@ -1,11 +1,16 @@
-<div *ngIf="properties && properties.length > 0">
-    <div *ngFor="let property of properties">
-      <h3>{{ property.title }}</h3>
-      <p>{{ property.description }}</p>
-      <!-- Add other property details here -->
+<div *ngIf="properties && properties.length > 0" style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+  <div *ngFor="let property of properties" style="margin: 10px;">
+    <div class="card" (click)="onclick(property._id)" *ngIf="property">
+      <img [src]="'data:image/png;base64,' + property.images[0]" class="card-img-top" alt="Property image">
+      <div class="card-body">
+        <h5 class="card-title"> {{reduceLengthHead(property.title) }}</h5>
+        <h4>{{ property.price | currencypipe}}</h4>
+        <p class="card-text">{{ reduceLength(property.description) }}</p>
+        <a href="#" class="btn btn-primary">Visit Property</a>
+      </div>
     </div>
   </div>
-  <div *ngIf="properties.length === 0">
-    <p>No properties found.</p>
-  </div>
-  
+</div>
+<div *ngIf="properties.length === 0">
+  <p>No properties found.</p>
+</div>

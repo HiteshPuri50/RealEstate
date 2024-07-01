@@ -25,10 +25,10 @@ export class ProfileComponent {
     if(this.cookie.check('email')){
       this.email = this.cookie.get('email');
       this.username = this.cookie.get('username');
+      console.log(this.email);
       this.auth.getProfile(this.email).subscribe(res=>{
-        this.userData = res.userProfile[0];
+        this.userData = res.userProfile;
         this.userProperties = res.Properties;
-        console.log(this.userProperties);
       }, err=>{ 
         console.log(err);
       });
@@ -38,13 +38,10 @@ export class ProfileComponent {
     const input = event.target as HTMLInputElement;
     if (input.files) {
       const file = input.files;
-      console.log(file[0]);
         this.convertFileToBase64(file[0], (base64String: string) => {
-          console.log(base64String);
           this.updateImage(base64String, this.email);
       });
     }
-    console.log(this.userImage);
   }
   updateImage(image: string , email: string){
     let data = {

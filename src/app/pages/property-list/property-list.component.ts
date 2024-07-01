@@ -26,12 +26,12 @@ export class PropertyListComponent {
   }
   reduceLength(text : string){
     // Check if the text length is less than or equal to 50 characters
-  if (text.length <= 100) {
-    return text;
-  }
+    if (text.length <= 100) {
+      return text;
+    }
 
-  // Return the first 50 characters followed by an ellipsis
-  return text.slice(0, 100) + '...';
+    // Return the first 50 characters followed by an ellipsis
+    return text.slice(0, 100) + '...';
   }
   getFirstLetter(username : string): string {
     return username ? username.charAt(0).toUpperCase() : '';

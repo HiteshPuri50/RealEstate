@@ -25,7 +25,8 @@ export class AuthApiService {
     return this.http.post(`${this.baseUrl}/Account/CreateAccount`, data);
   }
   getProfile(email : any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Account/profile`, { params: { email} });
+    // console.log(data);
+    return this.http.get(`${this.baseUrl}/Account/profile`, {params : {email}});
   }
   updateProfileImage(data: any){
     return this.http.post(`${this.baseUrl}/Account/updateImage`, data );

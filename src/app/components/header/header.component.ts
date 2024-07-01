@@ -19,11 +19,11 @@ export class HeaderComponent {
       this.email = this.cookie.get('email');
     this.auth.getProfile(this.email).subscribe(res=>{
       console.log(res);
-      this.userData = res.userProfile[0];
+      this.userData = res.userProfile;
     }, err=>{ 
       console.log(err);
     });
-  } 
+    }
   }
   
   getFirstLetter(): string {
