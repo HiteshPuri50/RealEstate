@@ -2,12 +2,10 @@
     padding: 15px 30px;
     background: #fff;
     border-radius: 6px;
-    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
+    background-color: #58bf93;
 }
 .wrapper h2 {
     position: relative;
-    /* font-size: 22px; */
-    /* font-weight: 600; */
     color: #333;
 }
 .wrapper h2::before {
@@ -19,6 +17,7 @@
     width: 55%;
     border-radius: 12px;
     background: #58bf93;
+    filter: blur(10px);
 }
 .wrapper form {
     margin-top: 30px;

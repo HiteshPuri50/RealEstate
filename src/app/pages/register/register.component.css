@@ -5,21 +5,29 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-body {
+
+.main-content{
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4070f4;
+    position: relative;
+}
+.background-video{
+    width: 100%;
+}
+video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
 }
 .wrapper {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute;
     max-width: 430px;
     width: 100%;
-    background: #fff;
+    background: rgba(0, 0, 0, 0.5);
     padding: 34px;
     border-radius: 6px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -28,7 +36,10 @@ body {
     position: relative;
     font-size: 22px;
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
+}
+.checkbox{
+    color: white;
 }
 .wrapper h2::before {
     content: "";
@@ -48,17 +59,21 @@ body {
     margin: 18px 0;
 }
 form .input-box input {
+    background-color: #3333333b;
     height: 100%;
     width: 100%;
     outline: none;
     padding: 0 15px;
     font-size: 17px;
     font-weight: 400;
-    color: #333;
+    color: #ffffff;
     border: 1.5px solid #c7bebe;
     border-bottom-width: 2.5px;
     border-radius: 6px;
     transition: all 0.3s ease;
+}
+form .input-box input::placeholder{
+    color: white;
 }
 .input-box input:focus,
 .input-box input:valid {
@@ -69,7 +84,7 @@ form .policy {
     align-items: center;
 }
 form h3 {
-    color: #707070;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     margin-left: 10px;
@@ -82,10 +97,11 @@ form h3 {
     cursor: pointer;
 }
 .input-box.button input:hover {
-    background: #0e4bf1;
+    background: white;
+    color: #4070f4;
 }
 form .text h3 {
-    color: #333;
+    color: #ffffff;
     width: 100%;
     text-align: center;
 }

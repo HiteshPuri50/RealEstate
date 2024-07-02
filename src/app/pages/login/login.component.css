@@ -3,33 +3,50 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: gilroy;
 }
-body {
+.main-content {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4070f4;
+    position: relative;
+    overflow: hidden;
 }
+
+.main-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../../assets/loginbg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(4px);
+    z-index: -1;
+}
+
 .wrapper {
     position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    z-index: 1;
     max-width: 430px;
     width: 100%;
-    background: #fff;
+    background: rgba(0, 0, 0, 0.5);
     padding: 34px;
     border-radius: 6px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
+
 .wrapper h2 {
     position: relative;
     font-size: 22px;
     font-weight: 600;
-    color: #333;
+    color: white;
 }
+
 .wrapper h2::before {
     content: "";
     position: absolute;
@@ -48,21 +65,31 @@ body {
     margin: 18px 0;
 }
 form .input-box input {
+    background-color: #3333333b;
     height: 100%;
     width: 100%;
     outline: none;
     padding: 0 15px;
     font-size: 17px;
-    font-weight: 400;
-    color: #333;
+    font-weight: 600;
+    
     border: 1.5px solid #c7bebe;
     border-bottom-width: 2.5px;
     border-radius: 6px;
     transition: all 0.3s ease;
 }
+form .input-box input::placeholder{
+    color: white;
+}
 .input-box input:focus,
 .input-box input:valid {
     border-color: #4070f4;
+    color: white;
+}
+
+input:not([value = ""]){
+    background-color: #3333333b;
+    color: #333;
 }
 form .policy {
     display: flex;
@@ -75,22 +102,21 @@ form h3 {
     margin-left: 10px;
 }
 .input-box.button input {
-    color: #fff;
     letter-spacing: 1px;
     border: none;
-    background: #4070f4;
     cursor: pointer;
 }
 .input-box.button input:hover {
-    background: #0e4bf1;
+    background: white;
+    color: #4070f4;
 }
 form .text h3 {
-    color: #333;
+    color: white;
     width: 100%;
     text-align: center;
 }
 form .text h3 a {
-    color: #4070f4;
+    color: #95b0fa;
     text-decoration: none;
 }
 form .text h3 a:hover {
