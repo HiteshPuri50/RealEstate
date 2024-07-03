@@ -1,7 +1,7 @@
 .nav-class {
-  background-color: rgb(58, 73, 90);
+  background-color: #31473A;
   justify-content: space-between;
-  color: white;
+  color: #FBEAEB;
   width: 100vw;
 }
 .example-form {

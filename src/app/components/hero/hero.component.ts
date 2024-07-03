@@ -1,4 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component} from '@angular/core';
+import { AuthApiService } from 'src/app/services/auth-api.service';
 
 interface Budget {
   value: string;
@@ -11,9 +13,10 @@ interface Budget {
 })
 
 export class HeroComponent {
+  constructor(private http : HttpClient, private auth: AuthApiService){}
   selectedBudget!: number;
   budgets: Budget[] = [
-    { value: '5000', viewValue: '500000' },
+    { value: '5000', viewValue: '5000' },
     { value: '10000', viewValue: '10000' },
     { value: '15000', viewValue: '15000' },
     { value: '20000', viewValue: '20000' },
@@ -53,8 +56,21 @@ export class HeroComponent {
     }
   }
   onEnter(formValue: any) {
-    const searchTerm = formValue.search;
-    console.log('Search Term:', searchTerm);
+    const searchTerm = {
+      search: formValue.search,
+      budget: Number(this.selectedBudget)
+    };
+
+    this.auth.getFilter(searchTerm).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+    console.log(searchTerm);
   }
 }
 // style="translate: none; rotate: none; scale: none; transform: translate(30.2778px, 49.4269px) rotateY(3.02778deg) rotateX(-4.94269deg);"

@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthApiService } from 'src/app/services/auth-api.service';
 import { UpdateDataDialogComponent } from '../update-data-dialog/update-data-dialog.component';
 import { hide } from '@popperjs/core';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+
 
 @Component({
   selector: 'app-profile',
@@ -18,6 +20,7 @@ export class ProfileComponent {
   userImage !: any;
   username!: string;
   userProperties: any;
+  // , private header : HeaderComponent
   constructor(private cookie: CookieService, private router : Router, private auth : AuthApiService,
     private dialog : MatDialog
   ){  }
@@ -32,7 +35,7 @@ export class ProfileComponent {
       }, err=>{ 
         console.log(err);
       });
-    } 
+    }
   }
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -53,6 +56,7 @@ export class ProfileComponent {
       this.ngOnInit();
     }, err =>{
       console.log(err);
+      this.ngOnInit();
     })
   }
   convertFileToBase64(file: File, callback: (base64String: string) => void): void {

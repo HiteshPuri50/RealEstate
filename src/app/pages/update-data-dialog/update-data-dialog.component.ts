@@ -11,8 +11,8 @@ import { AuthApiService } from 'src/app/services/auth-api.service';
 export class UpdateDataDialogComponent {
   userData:any;
   updateForm!: FormGroup;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private fb : FormBuilder, private auth :AuthApiService,
-  public dialogRef: MatDialogRef<UpdateDataDialogComponent>,) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {}, private fb : FormBuilder,
+  private auth :AuthApiService, public dialogRef: MatDialogRef<UpdateDataDialogComponent>,) {
     this.userData = data;
     this.updateForm = this.fb.group(
       {

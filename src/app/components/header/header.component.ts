@@ -13,19 +13,21 @@ export class HeaderComponent {
   showDropdown: boolean = false;
   email!: string;
   userData:any;
-  constructor(private cookie: CookieService, private router : Router, private auth: AuthApiService){ 
+  constructor(private cookie: CookieService, private router : Router, private auth: AuthApiService){
     if(this.cookie.check('email')){
       this.username = this.cookie.get('username');
       this.email = this.cookie.get('email');
-    this.auth.getProfile(this.email).subscribe(res=>{
-      console.log(res);
-      this.userData = res.userProfile;
-    }, err=>{ 
-      console.log(err);
-    });
+      this.auth.getProfile(this.email).subscribe(res=>{
+        // console.log(res);
+        this.userData = res.userProfile;
+      }, err=>{ 
+        console.log(err);
+      });
     }
   }
-  
+  fetchData(){
+    
+  }
   getFirstLetter(): string {
     return this.username ? this.username.charAt(0).toUpperCase() : '';
   }

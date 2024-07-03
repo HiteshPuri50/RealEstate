@@ -34,7 +34,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button class="btn-search" mat-stroked-button>
+    <button class="btn-search" (click)="onEnter(searchForm.value)" mat-stroked-button>
       Search
     </button>
   </form>

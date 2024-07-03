@@ -1,8 +1,21 @@
 .wrapper{
     padding: 15px 30px;
-    background: #fff;
     border-radius: 6px;
-    background-color: #58bf93;
+    /* z-index: 1; */
+}
+.wrapper::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    background: #78b69b;
+    /* filter: blur(1px); */
+    /* z-index: -1; */
 }
 .wrapper h2 {
     position: relative;
@@ -16,7 +29,7 @@
     height: 3px;
     width: 55%;
     border-radius: 12px;
-    background: #58bf93;
+    background: #78b69b;
     filter: blur(10px);
 }
 .wrapper form {

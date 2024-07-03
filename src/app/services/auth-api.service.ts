@@ -46,4 +46,7 @@ export class AuthApiService {
   getProperty(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/RealEstate/getProperties`, { params: { id } });
   }
+  getFilter(data: any){
+    return this.http.post(`${this.baseUrl}/RealEstate/filterProperties`, data);
+  }
 }
