@@ -382,3 +382,24 @@
     /* position: fixed; */
     padding: 25px;
   }
+  .shortlist-share{
+    /* position: absolute;
+    right: 0; */
+    /* width: 100px; */
+    float: right;
+
+    display: flex;
+}
+.btn-icon{
+    padding: 8px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+}
+.btn-icon:hover{
+    cursor: pointer;
+    background-color: rgb(12, 75, 7);
+    color: white;
+}

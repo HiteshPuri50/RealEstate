@@ -59,8 +59,11 @@
                   <img src="../../../../assets/dummyProperty.webp" alt="Property Image" class="card-image">
                 </ng-template>
               </div>
-              <div class="card-body"><i style='font-size:24px' class='far'>&#xf004;</i>
-                <button class="share-btn"><i class="material-icons">share</i></button>
+              <div class="card-body">
+                <div class="shortlist-share">
+                  <button class="btn-icon"><mat-icon>favorite_border</mat-icon></button>
+                  <button class="btn-icon"><mat-icon>share</mat-icon></button>
+                </div>
                 <h4 class="card-title">{{property.title}}</h4>
                 <p class="card-location">{{property.address.street}}</p>
                 <p class="card-price">{{property.price | currencypipe}}</p>
