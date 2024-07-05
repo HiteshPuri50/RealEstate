@@ -1,18 +1,33 @@
 <div class="wrapper">
     <h2>Update your data</h2>
-    <form (ngSubmit)="onSubmit()" [formGroup]="updateForm">
+    <form (ngSubmit)="onSubmit(searchForm.value)" [formGroup]="updateForm" #searchForm="ngForm">
         <div class="input-box">
             <p class="label">Username:</p><input type="text" formControlName="username" placeholder="Enter your username" required>
         </div>
         <div class="input-box">
-            <p class="label">Gender:</p><select formControlName="gender" required>
-                <option value="" disabled>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
+            <p class="label">Gender:</p>
+            <mat-form-field class="budget-select">
+                <mat-label>Gender</mat-label>
+                <mat-select [(ngModel)]="gender" name="gender">
+                  <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                    {{gender.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
         </div>
         <div class="input-box">
             <p class="label">Age:</p><input type="text" formControlName="age" placeholder="Enter your age" required>
+        </div>
+        <div class="input-box">
+            <p class="label">Account Type:</p>
+            <mat-form-field class="budget-select">
+                <mat-label>Account Type</mat-label>
+                <mat-select [(ngModel)]="AccountType" name="AccountType">
+                  <mat-option *ngFor="let type of Types" [value]="type.value">
+                    {{type.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
         </div>
         <div class="input-box button">
             <input type="Submit" value="Update Now" style="color: white; width: 100%; background-color: #58bf93;">

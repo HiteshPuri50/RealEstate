@@ -17,9 +17,9 @@ export class PropertyDetailComponent {
     if (this.id) {
       this.auth.getProperty(this.id).subscribe(
         res => {
-          console.log(res[0]);
+          // console.log(res[0]);
           this.propertyDetail = res[0];
-          console.log(this.propertyDetail.images[0]);
+          // console.log(this.propertyDetail.images[0]);
         },
         err => {
           console.log(err);

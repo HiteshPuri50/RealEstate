@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthApiService } from 'src/app/services/auth-api.service';
 
 interface Budget {
@@ -13,7 +14,7 @@ interface Budget {
 })
 
 export class HeroComponent {
-  constructor(private http : HttpClient, private auth: AuthApiService){}
+  constructor(private http : HttpClient, private auth: AuthApiService, private router : Router){}
   selectedBudget!: number;
   budgets: Budget[] = [
     { value: '5000', viewValue: '5000' },
@@ -60,17 +61,7 @@ export class HeroComponent {
       search: formValue.search,
       budget: Number(this.selectedBudget)
     };
-
-    this.auth.getFilter(searchTerm).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    console.log(searchTerm);
+    this.router.navigate(['/testimonials'], { queryParams: searchTerm });
   }
 }
 // style="translate: none; rotate: none; scale: none; transform: translate(30.2778px, 49.4269px) rotateY(3.02778deg) rotateX(-4.94269deg);"

@@ -1,1 +1,84 @@
-<p>testimonials works!</p>
+<app-header></app-header>
+<div class="banner-holder" (mousemove)="MoveContent($event)">
+    <div class="hidingcontent">
+        <div class="select-type">
+            <div class="select-btn">
+              <button class="btn-type" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">New
+                <br>Projects</button>
+            </div>
+            <div class="select-btn">
+              <button class="btn-type">Buy<br> Properties</button>
+            </div>
+            <div class="select-btn">
+              <button class="btn-type">Rent <br>Properties</button>
+            </div>
+            <div class="select-btn">
+              <button class="btn-type">PG/<br>Hostels</button>
+            </div>
+            <div class="select-btn">
+              <button class="btn-type">Plot & <br>Lands</button>
+            </div>
+            <div class="select-btn">
+              <button class="btn-type">Commercial <br>Properties</button>
+            </div>
+            <div class="select-btn">
+              <button style="border-top-right-radius: 10px; border-bottom-right-radius: 10px;" class="btn-type">Find<br>
+                Agents</button>
+            </div>
+          </div>
+          <form #searchForm="ngForm" class="input-search">
+            <input (keydown.enter)="onEnter(searchForm.value)" type="text" placeholder="Search.." value="searchTerm.search" name="search" ngModel>
+            <mat-form-field class="budget-select">
+              <mat-label>Budget</mat-label>
+              <mat-select [(ngModel)]="selectedBudget" name="budget">
+                <mat-option *ngFor="let budget of budgets" [value]="budget.value">
+                  {{budget.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button class="btn-search" (click)="onEnter(searchForm.value)" mat-stroked-button>
+              Search
+            </button>
+          </form>
+          <img src=".../../../../../assets/head-image.jpg" class="banner-img">
+          <h3 id="bannerHeading" class="banner-heading">Get Your Dream House</h3>
+    </div>
+</div>
+  <div class="main-content">
+    <div class="content">
+      <div class="shortlisted">
+        <h3>Shortlisted Properties</h3>
+      </div>
+      <div class="content-card" *ngIf="relatedProperties">
+        <div class="card" *ngFor="let property of relatedProperties">
+            <div class="property-details">
+              <div class="property-img">
+                <!-- {{property.images[0]}} -->
+                <img *ngIf="property.images.length > 0; else displayDummy" [src]="'data:image/png;base64,' + property.images[0]" alt="Property Image" class="card-image">
+                <ng-template #displayDummy>
+                  <img src="../../../../assets/dummyProperty.webp" alt="Property Image" class="card-image">
+                </ng-template>
+              </div>
+              <div class="card-body"><i style='font-size:24px' class='far'>&#xf004;</i>
+                <button class="share-btn"><i class="material-icons">share</i></button>
+                <h4 class="card-title">{{property.title}}</h4>
+                <p class="card-location">{{property.address.street}}</p>
+                <p class="card-price">{{property.price | currencypipe}}</p>
+                <p class="card-area">{{property.squareFeet | squarefeet}}</p>
+                <p class="card-description">{{property.description}}</p>
+              </div>
+            </div>
+            <div class="contact">
+            <div class="owner-details">
+              <img src=".../../../../../assets/dummyUser.webp" alt="Owner Logo" class="owner-logo">
+              <span class="owner-name">{{property.owner}}</span>
+            </div>
+            <div class="card-footer">
+              <!-- <button class="whatsapp-btn">Whatsapp</button> -->
+              <!-- <button class="contact-btn">Contact Owner</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

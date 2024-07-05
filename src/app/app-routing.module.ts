@@ -12,6 +12,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
 import { PropertyListComponent } from './pages/property-list/property-list.component';
 import { AddPropertyComponent } from './admin/add-property/add-property.component';
+import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'property-list', component: PropertyListComponent },
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'property-detail/:id', component: PropertyDetailComponent },
+  { path: 'testimonials', component: TestimonialsComponent },
 ];
 
 @NgModule({
