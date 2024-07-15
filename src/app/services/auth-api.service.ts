@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { backend } from '../backend/backend';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,18 @@ import { Observable } from 'rxjs';
 export class AuthApiService {
 
   baseUrl : string = '';
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookie : CookieService,private router : Router) {
     if(backend.role == 0){
       this.baseUrl = 'https://localhost:7184/api';
     }else if(backend.role == 1){
       this.baseUrl = 'http://localhost:3000/api';
     }
+  }
+
+  signOut() {
+    google.accounts.id.sisableAutoSelect();
+    this.cookie.deleteAll();
+    this.router.navigate(['/login']);  // Redirect to login page after logout
   }
   
   loginAPI(data: any): Observable<any> {
@@ -49,4 +56,10 @@ export class AuthApiService {
   getFilter(data: any){
     return this.http.post(`${this.baseUrl}/RealEstate/filterProperties`, data);
   }
+  getShortListPropertyId(data: any){
+      return this.http.post(`${this.baseUrl}/RealEstate/shortListPropertyId`, data);
+  }
+  getShortListProperty(data: any){
+    return this.http.post(`${this.baseUrl}/RealEstate/shortListProperty`, data);
+}
 }

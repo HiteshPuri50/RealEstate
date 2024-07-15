@@ -63,6 +63,9 @@
 .wrapper form .input-box {
     height: 52px;
     margin: 18px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 form .input-box input {
     background-color: #3333333b;
@@ -121,4 +124,11 @@ form .text h3 a {
 }
 form .text h3 a:hover {
     text-decoration: underline;
+}
+.social-btn{
+    display: flex;
+    justify-content: center;
+}
+#google-btn{
+    margin: 10px;
 }

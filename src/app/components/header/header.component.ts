@@ -18,7 +18,6 @@ export class HeaderComponent {
       this.username = this.cookie.get('username');
       this.email = this.cookie.get('email');
       this.auth.getProfile(this.email).subscribe(res=>{
-        // console.log(res);
         this.userData = res.userProfile;
       }, err=>{ 
         console.log(err);
@@ -40,9 +39,23 @@ export class HeaderComponent {
     }
   }
   logout() {
-    this.cookie.deleteAll();
+    this.auth.signOut();
     this.username = '';
     this.showDropdown = false;
-    this.router.navigate(['/login']);  // Redirect to login page after logout
+  }
+  sleep(ms : number){
+    // new Promise<void>{
+      return new Promise((resolve) =>{
+        setTimeout(resolve, ms)
+      })
+    // }
+  }
+  loginBtn($e : any){
+    $e.preventDefault();
+    const body = document.querySelector("body");
+    body?.classList.add("page-transition");
+    this.sleep(200)
+    this.router.navigate(['/login']);
+    body?.classList.remove("page-transition");
   }
 }

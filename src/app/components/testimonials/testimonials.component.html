@@ -47,13 +47,17 @@
   <div class="main-content">
     <div class="content">
       <div class="shortlisted">
-        <h3>Shortlisted Properties</h3>
+        <p class="shortlist-heading">Shortlisted Properties</p>
+        <!-- <div class="shortlist-cards"> -->
+          <!-- <div class="sm-card"> -->
+            <app-shortlisted-properties [shortListedProperties]="shorlistProperties"></app-shortlisted-properties>
+          <!-- </div> -->
+        <!-- </div> -->
       </div>
       <div class="content-card" *ngIf="relatedProperties">
         <div class="card" *ngFor="let property of relatedProperties">
             <div class="property-details">
               <div class="property-img">
-                <!-- {{property.images[0]}} -->
                 <img *ngIf="property.images.length > 0; else displayDummy" [src]="'data:image/png;base64,' + property.images[0]" alt="Property Image" class="card-image">
                 <ng-template #displayDummy>
                   <img src="../../../../assets/dummyProperty.webp" alt="Property Image" class="card-image">
@@ -61,25 +65,28 @@
               </div>
               <div class="card-body">
                 <div class="shortlist-share">
-                  <button class="btn-icon"><mat-icon>favorite_border</mat-icon></button>
-                  <button class="btn-icon"><mat-icon>share</mat-icon></button>
+                  <button class="btn-icon" (click)="shareFavBtn(0, property._id)"><mat-icon *ngIf="checkFav(property._id)" style="color: red;">favorite</mat-icon><mat-icon *ngIf="!checkFav(property._id)">favorite_border</mat-icon></button>
+                  <button class="btn-icon" (click)="shareFavBtn(1, property._id)"><mat-icon>share</mat-icon></button>
                 </div>
                 <h4 class="card-title">{{property.title}}</h4>
                 <p class="card-location">{{property.address.street}}</p>
-                <p class="card-price">{{property.price | currencypipe}}</p>
+                <p class="card-price"><b>{{property.price | currencypipe}}</b></p>
                 <p class="card-area">{{property.squareFeet | squarefeet}}</p>
                 <p class="card-description">{{property.description}}</p>
               </div>
             </div>
             <div class="contact">
-            <div class="owner-details">
-              <img src=".../../../../../assets/dummyUser.webp" alt="Owner Logo" class="owner-logo">
-              <span class="owner-name">{{property.owner}}</span>
-            </div>
-            <div class="card-footer">
-              <!-- <button class="whatsapp-btn">Whatsapp</button> -->
-              <!-- <button class="contact-btn">Contact Owner</button> -->
-            </div>
+              <div class="owner-details">
+                <div class="owner">
+                  <img src=".../../../../../assets/dummyUser.webp" alt="Owner Logo" class="owner-logo">
+                  <span class="owner-name">{{property.owner}}</span>
+                </div>
+                <div class="card-footer">
+                  <button class="whatsapp-btn">Whatsapp</button>
+                  <!-- <button class="contact-btn">Contact Owner</button> -->
+                  <button class="contact-btn" (click)="buyNow(property._id)" >Buy Now</button>
+                </div>
+              </div>
           </div>
         </div>
       </div>

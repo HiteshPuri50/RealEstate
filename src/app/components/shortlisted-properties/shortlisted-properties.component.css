@@ -1,0 +1,39 @@
+.property-img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    /* position: absolute; */
+}
+.property-details{
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: 200px;
+    transition: opacity 2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.img{
+    position: relative;
+    transition: opacity 2s;
+}
+.property-img:hover .property-details{
+    opacity: 1;
+}
+.property-img:hover .img {
+    opacity: 0.4;
+}
+.card-location, .card-price, .card-area, .card-title {
+    line-height: 0;
+  }

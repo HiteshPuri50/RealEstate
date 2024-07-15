@@ -10,7 +10,11 @@
         featured
       </div>
       <mat-card style=" width: 400px; align-items: center;">
-        <img class="img-property" [src]="'data:image/png;base64,' + property.images[0]" alt="">
+        <!-- <img [src]="'data:image/png;base64,' + property.images[0]" alt=""> -->
+        <img class="img-property" *ngIf="property.images.length > 0; else displayDummy" [src]="'data:image/png;base64,' + property.images[0]" alt="Property Image">
+        <ng-template #displayDummy>
+          <img class="img-property"  src="../../../../assets/dummyProperty.webp" alt="Property Image">
+        </ng-template>
       </mat-card>
       <div class="card-content">
         <div class="title">

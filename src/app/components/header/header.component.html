@@ -12,7 +12,7 @@
       <button class="btn-add-property" routerLink="/add-property" aria-label="Example icon-button with heart icon">
         Sell or Rent Property
       </button>
-      <button *ngIf="!username; else userExist" class="btn-login" routerLink="/login" aria-label="Example icon-button with heart icon">
+      <button *ngIf="!username; else userExist" class="btn-login" (click)="loginBtn($event)" aria-label="Example icon-button with heart icon" >
         Login
       </button>
       <ng-template #userExist>

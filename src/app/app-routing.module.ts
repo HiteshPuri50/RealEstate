@@ -13,6 +13,8 @@ import { PropertyDetailComponent } from './pages/property-detail/property-detail
 import { PropertyListComponent } from './pages/property-list/property-list.component';
 import { AddPropertyComponent } from './admin/add-property/add-property.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { PaymentGatewayComponent } from './admin/payment-gateway/payment-gateway.component';
+import { ConfirmationComponent } from './admin/confirmation/confirmation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +32,8 @@ const routes: Routes = [
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'property-detail/:id', component: PropertyDetailComponent },
   { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'paymentGateway', component: PaymentGatewayComponent},
+  { path: 'confirm' , component: ConfirmationComponent }
 ];
 
 @NgModule({

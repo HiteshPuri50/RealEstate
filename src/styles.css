@@ -9,3 +9,9 @@ app-header {
     width: 100%;
     z-index: 1000; /* Ensures the header stays on top */
 }
+.page-transition{
+    opacity: 0;
+    background-color: black;
+    transform: translateY(40px);
+    filter: blur(10px);
+}

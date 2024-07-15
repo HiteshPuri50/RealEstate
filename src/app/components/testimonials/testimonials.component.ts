@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { AuthApiService } from 'src/app/services/auth-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { CommondataService } from 'src/app/services/commondata.service';
+
 interface Budget {
   value: string;
   viewValue: string;
@@ -15,17 +18,23 @@ export class TestimonialsComponent {
   search : string = '';
   budget !: number;
   relatedProperties !: any;
-  constructor(private http : HttpClient, private auth: AuthApiService,private route: ActivatedRoute){}
+  shorlistProperties :any;
+  shortlistedIds : any[] = [];
+  constructor(private http : HttpClient, private auth: AuthApiService,private route: ActivatedRoute,
+    private cookie : CookieService, private cmn : CommondataService, private router : Router
+  ){}
   ngOnInit(){
+    this.cmn.shortListedProperties$.subscribe(properties => {
+      this.getShortlistProperty(properties);
+    });
     this.route.queryParams.subscribe(params => {
       this.search = params['search'];
-      this.budget = Number(params['budget']);
+      this.budget = Number(params['budget']); 
     });
     let searchTerm = {
       search : this.search,
       budget : this.budget
     }
-    console.log(searchTerm);
     this.auth.getFilter(searchTerm).subscribe(
       res => {
         this.relatedProperties = res;
@@ -34,6 +43,17 @@ export class TestimonialsComponent {
         console.log(err);
       }
     );
+  }
+    seprateArray(arr: any){
+    let seprateArray = arr.split(',');
+    return seprateArray;
+  }
+  getShortlistProperty(properties : any){
+    this.auth.getShortListProperty(properties).subscribe(res=>{
+      console.log(res);
+    }, err=>{
+      console.log(err);
+    })
   }
   selectedBudget!: number;
   budgets: Budget[] = [
@@ -81,6 +101,7 @@ export class TestimonialsComponent {
     this.auth.getFilter(searchTerm).subscribe(
       res => {
         this.relatedProperties = res;
+        console.log(this.relatedProperties);
       },
       err => {
         console.log(err);
@@ -89,11 +110,33 @@ export class TestimonialsComponent {
 
     console.log(searchTerm);
   }
-  shortlistProperty(button: any) {
-    if (button.classList.contains('shortlisted')) {
-      button.classList.remove('shortlisted');
-    } else {
-      button.classList.add('shortlisted');
+  // shortlistProperty(button: any) {
+  //   if (button.classList.contains('shortlisted')) {
+  //     button.classList.remove('shortlisted');
+  //   } else {
+  //     button.classList.add('shortlisted');
+  //   }
+  // }
+  shareFavBtn(num: any, Id: any){
+    if(num == 1){
+      alert("Why are you Sharing");
+    }else{
+      let data = {
+        _id : Id,
+        email : this.cookie.get('email')
+      }
+      this.auth.getShortListPropertyId(data).subscribe(res=> {
+        this.shorlistProperties = res;
+      })
     }
+  }
+  checkFav(Id : String){
+    if(this.shortlistedIds.includes(Id)){
+      return true
+    }
+    return false
+  }
+  buyNow(id:any){
+    this.router.navigate(['paymentGateway'], { queryParams: { id: id } });
   }
 }

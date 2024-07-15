@@ -39,6 +39,9 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
 import { UpdateDataDialogComponent } from './pages/update-data-dialog/update-data-dialog.component';
 import { DatedifferencePipe } from './pipes/datedifference.pipe';
 import { UserPropertiesComponent } from './pages/user-properties/user-properties.component';
+import { ShortlistedPropertiesComponent } from './components/shortlisted-properties/shortlisted-properties.component';
+import { PaymentGatewayComponent } from './admin/payment-gateway/payment-gateway.component';
+import { ConfirmationComponent } from './admin/confirmation/confirmation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +68,10 @@ import { UserPropertiesComponent } from './pages/user-properties/user-properties
     ShortNamePipe,
     UpdateDataDialogComponent,
     DatedifferencePipe,
-    UserPropertiesComponent
+    UserPropertiesComponent,
+    ShortlistedPropertiesComponent,
+    PaymentGatewayComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
