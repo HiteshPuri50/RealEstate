@@ -49,19 +49,30 @@ export class LoginComponent {
     if(res){
       console.log(res.credential);
       const payload = this.decodeToken(res.credential);
-      console.log(payload);
+      this.auth.googleLoginAPI(payload).subscribe((res) =>{
+          this.response = res;
+          this.cookie.set("email", this.response.email);
+          this.cookie.set("username", this.response.username);
+          this.cookie.set("mobile", this.response.mobile);
+          this.cookie.set("googleLoggedIn", this.response.googleLoggedIn);
+          if (this.response.shortlistedProperties) {
+            this.cmnData.setShortListedProperties(this.response.shortlistedProperties);
+          }
+          this.router.navigate(['/home']);
+      }, (err) =>{
+        console.log(err);
+      })
       this.cookie.set("loggedUser", JSON.stringify(payload));
     }
   }
   onSubmit() {
     this.auth.loginAPI(this.loginForm.value).subscribe(res => {
-      // console.log(res);
       this.response = res;
       console.log(this.response);
       this.cookie.set("email", this.response.email);
       this.cookie.set("username", this.response.username);
       this.cookie.set("mobile", this.response.mobile);
-
+      this.cookie.set("googleLoggedIn", this.response.googleLoggedIn);
     // Assuming `shortlistedProperties` is an array of properties
     if (this.response.shortlistedProperties) {
       this.cmnData.setShortListedProperties(this.response.shortlistedProperties);
@@ -73,3 +84,21 @@ export class LoginComponent {
     console.log("Sign in with Google button clicked...")
   }
 }
+
+
+// {
+//   "iss": "https://accounts.google.com",
+//   "azp": "430052986524-1ucb97q8430i548kh4e4aljmqicj9opi.apps.googleusercontent.com",
+//   "aud": "430052986524-1ucb97q8430i548kh4e4aljmqicj9opi.apps.googleusercontent.com",
+//   "sub": "110700022285395836609",
+//   "email": "angular0practice@gmail.com",
+//   "email_verified": true,
+//   "nbf": 1721037151,
+//   "name": "Angular Practice",
+//   "picture": "https://lh3.googleusercontent.com/a/ACg8ocKsJCgJHGbegLQhu1YHAUGKidMew5H7xFtYY-MqIEMOSFxtuw=s96-c",
+//   "given_name": "Angular",
+//   "family_name": "Practice",
+//   "iat": 1721037451,
+//   "exp": 1721041051,
+//   "jti": "59b7b3541d551edabc11488e507af2869584c024"
+// }

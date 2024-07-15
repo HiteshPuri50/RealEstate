@@ -20,13 +20,21 @@ export class AuthApiService {
   }
 
   signOut() {
-    google.accounts.id.sisableAutoSelect();
-    this.cookie.deleteAll();
+    let bool = this.cookie.get('googleLoggedIn')
+    if(bool){
+      google.accounts.id.disableAutoSelect();
+      this.cookie.deleteAll();
+    }else{
+      this.cookie.deleteAll();
+    }
     this.router.navigate(['/login']);  // Redirect to login page after logout
   }
   
   loginAPI(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/Account/login`, data);
+  }
+  googleLoginAPI(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/Account/googleLogin`, data);
   }
   registerAPI(data : any){
     return this.http.post(`${this.baseUrl}/Account/CreateAccount`, data);
