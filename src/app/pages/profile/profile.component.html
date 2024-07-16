@@ -7,7 +7,7 @@
             <div (click)="uploadFile.click()" class="profile-pic">
               <span class="initials" *ngIf="!userData.profileImage else haveImage">{{userData.username | shortName}}</span>
               <ng-template #haveImage>
-                <img class="profile-img" [src]="'data:image/png;base64,' + userData.profileImage" alt="" srcset="">
+                <img class="profile-img" [src]="userData.profileImage" alt="" srcset="">
               </ng-template>
               <input class="hideInput" #uploadFile (change)="onFileSelected($event)" type="file">
             </div>

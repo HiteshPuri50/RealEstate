@@ -42,13 +42,11 @@ export class LoginComponent {
       type: 'icon',
     })
   }
-  private  decodeToken(token :string){
-    return JSON.parse(atob(token.split(".")[1]));
-  }
   handleToken(res :any){
     if(res){
-      console.log(res.credential);
-      const payload = this.decodeToken(res.credential);
+      let payload = {
+        token: res.credential
+      }
       this.auth.googleLoginAPI(payload).subscribe((res) =>{
           this.response = res;
           this.cookie.set("email", this.response.email);
@@ -62,7 +60,7 @@ export class LoginComponent {
       }, (err) =>{
         console.log(err);
       })
-      this.cookie.set("loggedUser", JSON.stringify(payload));
+      // this.cookie.set("loggedUser", JSON.stringify(payload));
     }
   }
   onSubmit() {
